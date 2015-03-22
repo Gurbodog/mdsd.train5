@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hu.bme.mit.mdsd.train5:RailwayDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hu.bme.mit.mdsd.train5="hu.bme.mit.mdsd.train5">
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Switch" id="switch 1" length="0" neighbour="segment 1 segment 3 segment 4"/>
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Switch" id="switch 2" length="0" neighbour="segment 2 segment 3 segment 4"/>
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Segment" id="segment 1" length="10"/>
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Segment" id="segment 2" length="30"/>
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Segment" id="segment 3" length="20"/>
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Segment" id="segment 4" length="10"/>
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Station" id="east" train="west_from_east" length="0"/>
+  <trackelements xsi:type="hu.bme.mit.mdsd.train5:Station" id="west" train="east_from_west" length="0"/>
+  <sensors id="sensors" sensors="switch 1 switch 2"/>
+  <routes id="east_from_west" currentIndex="0" speed="5" leftOver="0">
+    <route id="1" next="2" element="west"/>
+    <route id="2" next="3" element="segment 1" previous="1"/>
+    <route id="3" next="4" element="switch 1" previous="2"/>
+    <route id="4" next="5" element="segment 3" previous="3"/>
+    <route id="5" next="6" element="switch 2" previous="4"/>
+    <route id="6" next="7" element="segment 2" previous="5"/>
+    <route id="7" element="east" previous="6"/>
+  </routes>
+  <routes id="west_from_east" currentIndex="0" speed="2" leftOver="0">
+    <route id="wfe_1" next="wfe_2" element="east"/>
+    <route id="wfe_2" next="wfe_3" element="segment 2" previous="wfe_1"/>
+    <route id="wfe_3" next="wfe_4" element="switch 2" previous="wfe_2"/>
+    <route id="wfe_4" next="wfe_5" element="segment 4" previous="wfe_3"/>
+    <route id="wfe_5" next="wfe_6" element="switch 1" previous="wfe_4"/>
+    <route id="wfe_6" next="wfe_7" element="segment 1" previous="wfe_5"/>
+    <route id="wfe_7" element="west" previous="wfe_6"/>
+  </routes>
+</hu.bme.mit.mdsd.train5:RailwayDiagram>

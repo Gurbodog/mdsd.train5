@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/hu.bme.mit.mdsd.train5/src" modelPluginID="hu.bme.mit.mdsd.train5"
+    modelName="Train5" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Train5.ecore</foreignModel>
+  <genPackages prefix="Train5" disposableProviderFactory="true" ecorePackage="Train5.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Train5.ecore#//Signal">
+      <genEnumLiterals ecoreEnumLiteral="Train5.ecore#//Signal/Failure"/>
+      <genEnumLiterals ecoreEnumLiteral="Train5.ecore#//Signal/STOP"/>
+      <genEnumLiterals ecoreEnumLiteral="Train5.ecore#//Signal/Go"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="Train5.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Train5.ecore#//NamedElement/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Train5.ecore#//TrackElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Train5.ecore#//TrackElement/State"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Train5.ecore#//TrackElement/train"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Train5.ecore#//TrackElement/length"/>
+    </genClasses>
+    <genClasses ecoreClass="Train5.ecore#//Route">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Train5.ecore#//Route/currentIndex"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Train5.ecore#//Route/route"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Train5.ecore#//Route/speed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Train5.ecore#//Route/leftOver"/>
+    </genClasses>
+    <genClasses ecoreClass="Train5.ecore#//Switch">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Train5.ecore#//Switch/neighbour"/>
+    </genClasses>
+    <genClasses ecoreClass="Train5.ecore#//Segment"/>
+    <genClasses ecoreClass="Train5.ecore#//Station"/>
+    <genClasses ecoreClass="Train5.ecore#//SensorNetwork">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Train5.ecore#//SensorNetwork/sensors"/>
+    </genClasses>
+    <genClasses ecoreClass="Train5.ecore#//RailwayDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Train5.ecore#//RailwayDiagram/trackelements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Train5.ecore#//RailwayDiagram/sensors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Train5.ecore#//RailwayDiagram/routes"/>
+    </genClasses>
+    <genClasses ecoreClass="Train5.ecore#//RoutePart">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Train5.ecore#//RoutePart/next"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Train5.ecore#//RoutePart/element"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Train5.ecore#//RoutePart/previous"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

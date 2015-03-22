@@ -1,0 +1,80 @@
+package hu.bme.mit.mdsd.train5
+
+
+import "hu.bme.mit.mdsd.train5"
+
+
+pattern EmptyNamedElement(element: NamedElement){
+	NamedElement.id(element,"");
+}
+
+
+pattern nextRoute(rt : RoutePart, next : RoutePart){
+	RoutePart.next(rt, next);
+}
+
+
+pattern previousRoute(rt : RoutePart, previous : RoutePart){
+	RoutePart.previous(rt, previous);
+}
+
+
+pattern StationMiddle(s : Station){
+	
+	RoutePart.element(rt, s); 
+	
+	find nextRoute(rt, _next);
+	
+	find previousRoute(rt, _previous);
+	
+}
+
+
+pattern isStation(te : TrackElement){
+	Station(te);
+}
+
+
+pattern notStation(te : TrackElement){
+	neg find isStation(te);
+	RoutePart.element(rt, te);
+	neg find nextRoute(rt, _next);
+}or{
+	neg find isStation(te);
+	RoutePart.element(rt, te);
+	neg find previousRoute(rt, _next);
+}
+
+// olyan RoutePart, akinek se next-je se previousa
+pattern invalidRoutePart(rt : RoutePart){
+	neg find nextRoute(rt, _next);
+	neg find previousRoute(rt, _previous);
+}
+// nem mutathat azonos típusú TrackElementre ket szomszedos RoutPart.
+// (pl segment utan csak switch vagy vegallomas johet)
+pattern sameType(te1 : TrackElement, te2 : TrackElement){
+	Station(te1);
+	Station(te2);	
+}or{
+	Switch(te1);
+	Switch(te2);
+}or{
+	Segment(te1);
+	Segment(te2);
+}
+
+pattern sameTypeNeighbour(rt : RoutePart){
+	RoutePart.element(rt, te1);
+	find nextRoute(rt, next);
+	RoutePart.element(next, te2);
+	find sameType(te1, te2);
+}or{
+	RoutePart.element(rt, te1);
+	find previousRoute(rt, previous);
+	RoutePart.element(previous, te2);
+	find sameType(te1, te2);
+}
+
+
+
+//********************************************************************
